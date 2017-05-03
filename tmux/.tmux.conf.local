@@ -253,3 +253,5 @@ bind p previous-window
 
 bind | split-window -h
 bind - split-window -v
+
+set-option -g mouse on

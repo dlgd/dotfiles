@@ -248,6 +248,16 @@ set -g prefix2 C-q
 unbind C-h
 unbind C-l
 
+unbind h
+unbind j
+unbind k
+unbind l
+
+unbind H
+unbind J
+unbind K
+unbind L
+
 bind n next-window
 bind p previous-window
 

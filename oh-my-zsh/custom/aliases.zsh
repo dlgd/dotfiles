@@ -1,0 +1,5 @@
+alias e='emacsclient -n -c --alternate-editor= '
+alias ne='emacs -nw'
+alias h='history'
+alias j='jobs -l'
+alias s='ssh'

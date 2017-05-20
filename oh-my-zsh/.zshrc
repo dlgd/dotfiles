@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=`stack path --bin-path` 2> /dev/null
+# export PATH=`stack path --bin-path` 2> /dev/null
 export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -53,6 +53,9 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Enable MX related specific features
+# MX="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/

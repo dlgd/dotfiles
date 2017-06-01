@@ -1,4 +1,3 @@
-alias ne='emacs -nw'
 alias h='history'
 alias j='jobs -l'
 alias s='ssh'
@@ -6,6 +5,7 @@ alias s='ssh'
 if [ "x$MX" = "xtrue" ]; then
     unalias emacs
     alias build='build.cmd'
+    alias clt='./client/client.cmd'
     alias debugApp='debugApp.cmd'
     alias lmxj='cygstart cmd /c launchmxj.cmd -l /MXJ_CONFIG_FILE:launcher_dgazard.xml /MXJ_FORCE_LAUNCHER_STARTUP:Y'
     alias mde='mxdevenv.cmd'
@@ -19,6 +19,4 @@ if [ "x$MX" = "xtrue" ]; then
     alias ucv='updateClientView.cmd'
     alias x='explorer'
     alias e='emacs'
-else
-    alias e='emacsclient -n -c --alternate-editor= '
 fi

@@ -54,6 +54,10 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Tmux
+ZSH_TMUX_AUTOSTART="true"
+ZSH_TMUX_AUTOSTART_ONCE="true"
+
 # Enable MX related specific features
 # MX="true"
 
@@ -61,7 +65,11 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting tmux)
+if [ "x$MX" = "xtrue" ]; then
+    plugins=(zsh-syntax-highlighting tmux)
+else
+    plugins=(git zsh-syntax-highlighting tmux stack ubuntu emacs)
+fi
 
 source $ZSH/oh-my-zsh.sh
 

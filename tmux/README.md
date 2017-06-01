@@ -1,10 +1,8 @@
 # TMUX
 ## Install
-* Install [Oh My Tmux!](https://github.com/gpakosz/.tmux)
+* Install [Tmux Themepack](https://github.com/jimeh/tmux-themepack)
 ```
-cd
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
+git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 ```
 * Run
 ```

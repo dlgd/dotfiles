@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     purescript
      python
      windows-scripts
      erlang
@@ -94,7 +95,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https (if (eq system-type 'windows-nt) nil t)
+   dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -339,17 +340,63 @@ you should place your code here."
                       (c-offsets-alist . ((innamespace . [0])))))
   (setq c-default-style "mx")
 
+  ;; ggtags
   (add-hook 'c-mode-hook 'ggtags-mode)
   (add-hook 'c++-mode-hook 'ggtags-mode)
   (add-hook 'dired-mode-hook 'ggtags-mode)
 
-  ;; Copy file path to kill ring
-  (defun copy-current-file-path ()
+  ;; Copy handy functions
+  (defun copy-current-file-path () ;; Copy file path to kill ring
     "Add current file path to kill ring."
     (interactive)
     (kill-new (buffer-file-name)))
   (global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
+  (defun get-point (symbol &optional arg)
+    "get the point"
+    (funcall symbol arg)
+    (point)
+    )
+
+  (defun copy-thing (begin-of-thing end-of-thing &optional arg)
+    "copy thing between beg & end into kill ring"
+    (save-excursion
+      (let ((beg (get-point begin-of-thing 1))
+            (end (get-point end-of-thing arg)))
+        (copy-region-as-kill beg end)))
+    )
+
+  (defun paste-to-mark(&optional arg)
+    "Paste things to mark, or to the prompt in shell-mode"
+    (let ((pasteMe
+           (lambda()
+             (if (string= "shell-mode" major-mode)
+                 (progn (comint-next-prompt 25535) (yank))
+               (progn (goto-char (mark)) (yank) )))))
+      (if arg
+          (if (= arg 1)
+              nil
+            (funcall pasteMe))
+        (funcall pasteMe))
+      ))
+
+  (defun copy-word (&optional arg)
+    "Copy words at point into kill-ring"
+    (interactive "P")
+    (copy-thing 'backward-word 'forward-word arg)
+    ;;(paste-to-mark arg)
+    )
+
+  (global-set-key (kbd "C-c w")         (quote copy-word))
+
+  (defun copy-line (&optional arg)
+    "Save current line into Kill-Ring without mark the line "
+    (interactive "P")
+    (copy-thing 'beginning-of-line 'end-of-line arg)
+    ;;(paste-to-mark arg)
+    )
+
+  (global-set-key (kbd "C-c l")         (quote copy-line))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
